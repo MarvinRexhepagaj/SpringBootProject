@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="FILE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>C:/Users/Marvin/Desktop/logs/log_file.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>C:/Users/Marvin/Desktop/logs/log_file.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- keep 30 days' worth of history capped at 3GB total size -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date - %-5level - [%thread] %c{2} - %message%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="WARN">
+        <appender-ref ref="FILE_APPENDER"/>
+    </root>
+
+    <logger name="com.lhind.internship.FinalProject" level="INFO">
+        <appender-ref ref="FILE_APPENDER"/>
+    </logger>
+
+    <logger name="org.springframework" level="WARN">
+        <appender-ref ref="FILE_APPENDER"/>
+    </logger>
+
+</configuration>
